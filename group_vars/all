@@ -1,0 +1,8 @@
+
+epelize:
+ "5":
+   url: http://dl.fedoraproject.org/pub/epel/5/i386/epel-release-5-4.noarch.rpm
+   repo: /etc/yum.repos.d/epel.repo
+ "6":
+   url: http://dl.fedoraproject.org/pub/epel/5/i386/epel-release-5-4.noarch.rpm
+   repo: /etc/yum.repos.d/epel.repo
