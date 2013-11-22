@@ -1,0 +1,12 @@
+
+---
+- hosts: astrax.fis.ucm.es
+  vars:
+    packages: scipy pyfits
+  user: spr
+  tasks:
+  - name: Install basic python
+    shell: yum install -y {{ packages }}
+
+ #  $labpkgs = ["ucmima", "octopus", "iraf-stripped", "midas-precom", "ds9", "e3d", 
+ #                  "ipython", "scipy", "pyfits", "func", "ca-astroucm"]

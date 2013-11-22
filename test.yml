@@ -1,0 +1,26 @@
+
+---
+- hosts: astrax.fis.ucm.es
+  user: spr
+  vars:
+     epelize:
+        "5":
+          url: http://dl.fedoraproject.org/pub/epel/5/i386/epel-release-5-4.noarch.rpm
+          repo: /etc/yum.repos.d/epel.repo
+        "6":
+          url: http://dl.fedoraproject.org/pub/epel/5/i386/epel-release-5-4.noarch.rpm
+          repo: /etc/yum.repos.d/epel.repo
+  tasks:
+  - name: Install EPEL '{{ ansible_lsb.major_release }}' repo
+    command: rpm -Uvh {{ epelize[ansible_lsb.major_release]["url"] }} creates={{ epelize[ansible_lsb.major_release]["repo"] }}
+    when: ansible_os_family == "RedHat"
+  - name: Install rpmfusion free
+    command: rpm -Uvh http://download1.rpmfusion.org/free/el/updates/5/i386/rpmfusion-free-release-5-1.noarch.rpm creates=/etc/yum.repos.d/rpmfusion-free-updates.repo
+  - name: Install rpmfusion nonfree
+    command: rpm -Uvh http://download1.rpmfusion.org/nonfree/el/updates/5/i386/rpmfusion-nonfree-release-5-1.noarch.rpm creates=/etc/yum.repos.d/rpmfusion-nonfree-updates.repo
+  - name: Install sttl
+    command: rpm -Uvh ftp://astrax.fis.ucm.es/pub/linux/sttl/el/5/x86_64/sttl-release-5-2.el5.centos.noarch.rpm creates=/etc/yum.repos.d/sttl.repo
+  - name: Install pgplot
+    action: yum pkg=pgplot state=installed
+
+
